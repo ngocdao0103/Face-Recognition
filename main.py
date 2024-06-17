@@ -46,8 +46,8 @@ face = cv2.resize(face, (224, 224))  # Đưa về kích thước cần thiết c
 img_preprocessed = prepare_image(face)
 features = model.predict(img_preprocessed)
 feature_vector = features.flatten()
-vectors = pickle.load(open("data/vectors.pkl", "rb"))
-paths = pickle.load(open("data/paths.pkl", "rb"))
+vectors = pickle.load(open("data/face-vectors.pkl", "rb"))
+paths = pickle.load(open("data/face-paths.pkl", "rb"))
 distance: object = np.linalg.norm(vectors - feature_vector, axis=1)
 K = 4
 ids = np.argsort(distance)[:K]
@@ -58,10 +58,11 @@ grid_size = int(math.sqrt(K))
 fig = plt.figure(figsize=(10, 5))
 
 for id in range(K):
-    print(nearest_image[id])
     draw_image = nearest_image[id]
+    print(draw_image[0])
     axes.append(fig.add_subplot(grid_size, grid_size, id + 1))
     axes[-1].set_title(draw_image[1])
+    # print(draw_image[0])
     plt.imshow(Image.open(draw_image[0]))
 
 fig.tight_layout()

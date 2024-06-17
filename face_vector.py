@@ -37,7 +37,7 @@ def prepare_image(face):
     return preprocess_input(img_array_expanded)
 
 
-data_folder = "data/img-face"
+data_folder = "data/face"
 
 # Khoi tao model
 model = get_extract_model()
@@ -57,8 +57,8 @@ for image_path in os.listdir(data_folder):
     paths.append(image_path_full)
 
 # save vao file
-vector_file = "data/vectors.pkl"
-path_file = "data/paths.pkl"
+vector_file = "data/face-vectors.pkl"
+path_file = "data/face-paths.pkl"
 
 pickle.dump(vectors, open(vector_file, "wb"))
 pickle.dump(paths, open(path_file, "wb"))

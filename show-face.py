@@ -13,7 +13,7 @@ def get_extract_model():
 
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-image_path = cv2.imread('data/img-face/MS_01_02.jpg')
+image_path = cv2.imread('data/img-face/MS_03_04.jpg')
 
 gray = cv2.cvtColor(image_path, cv2.COLOR_BGR2GRAY)
 faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
@@ -46,7 +46,7 @@ def get_extract_model():
 
 
 model = get_extract_model()
-face = detect_face('data/testing/person/images(5).jpg')
+face = detect_face('data/img-face/MS_03_04.jpg')
 if face is not None:
     face = cv2.resize(face, (224, 224))
     img_preprocessed = prepare_image(face)
